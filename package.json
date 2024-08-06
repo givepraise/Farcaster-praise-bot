@@ -1,0 +1,14 @@
+{
+  "name": "farcaster-praise-bot",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@neynar/nodejs-sdk": "^1.40.0"
+  }
+}
