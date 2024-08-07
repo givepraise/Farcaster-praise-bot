@@ -20,5 +20,4 @@ jobs:
             source ~/.nvm/nvm.sh
             cd farcaster-praise-bot
             git pull origin main
-            pm2 stop all
-            pm2 start --interpreter ~/.bun/bin/bun index.ts
+            pm2 reload all
