@@ -29,6 +29,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
             cd farcaster-praise-bot
             git pull origin main
             pm2 stop all
