@@ -5,6 +5,7 @@ const server = Bun.serve({
     port: 3000,
     async fetch(req) {
         try {
+            console.log("Received request! Date: " + new Date() + ' ' + req);
             const body = await req.text();
             const hookData = JSON.parse(body);
 
@@ -46,7 +47,7 @@ const server = Bun.serve({
                     replyTo: hookData.data.hash,
                 }
             );
-            console.log("Date:" + new Date() + reply);
+            console.log("Response sent! Date: " + new Date() + ' ' + reply);
             return new Response(`Replied to the cast with hash: ${reply.hash}`);
         } catch (e: any) {
             return new Response(e.message, { status: 500 });
