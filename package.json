@@ -3,6 +3,7 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
+    "dev": "frog dev",
     "start": "bun run index.ts"
   },
   "devDependencies": {
@@ -12,6 +13,8 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@neynar/nodejs-sdk": "^1.40.0"
+    "@neynar/nodejs-sdk": "^1.40.0",
+    "frog": "latest",
+    "hono": "latest"
   }
 }
