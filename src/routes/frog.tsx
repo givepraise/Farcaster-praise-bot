@@ -7,7 +7,7 @@ export const frogApp = new Frog({
     // Supply a Hub to enable frame verification.
     // hub: neynar({ apiKey: 'NEYNAR_FROG_FM' }),
     basePath: routes.frog,
-    title: 'Praise in Farcaster',
+    title: 'Praise in Farcaster!',
 })
 
 frogApp.frame('/', (c) => {
@@ -61,5 +61,4 @@ frogApp.frame('/', (c) => {
     })
 })
 
-frogApp.use('/*', serveStatic({ root: './public' }))
 devtools(frogApp, { serveStatic })
