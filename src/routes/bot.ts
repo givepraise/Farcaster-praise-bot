@@ -32,7 +32,7 @@ const bot = async (req: Request) => {
     }
     const query = {
         reason,
-        channel,
+        channel: channel.name,
         giver: author.username,
         recipient: praiseReceiver.verified_addresses.eth_addresses[0] || praiseReceiver.custody_address
     };
