@@ -7,6 +7,10 @@ const bot = async (req: Request) => {
     const body = await req.text();
     const hookData = JSON.parse(body);
     const { channel, author, text, mentioned_profiles, hash } = hookData.data;
+    if (author.username === process.env.PRAISE_FARCASTER_HANDLE) {
+        // The bot should not reply to itself
+        return new Response('The bot should not reply to itself', { status: 200 });
+    }
     let praiseIndex = text.indexOf(' praise');
     if (praiseIndex === -1) {
         // There's no 'praise' in the cast
@@ -15,7 +19,7 @@ const bot = async (req: Request) => {
             `GM ${author.username}!
 If you want to give praise to someone and mint an attestation, try casting in the following format:
 
-"@givepraise praise {recipient} for {reason}"
+@givepraise praise {recipient} for {reason}
             `,
             {
                 replyTo: hash,
@@ -30,7 +34,7 @@ If you want to give praise to someone and mint an attestation, try casting in th
         await neynarClient.publishCast(
             process.env.SIGNER_UUID,
             `GM ${author.username}!
-            Please mention a Farcaster account to praise for`,
+Please mention a Farcaster account to praise for`,
             {
                 replyTo: hash,
             }
