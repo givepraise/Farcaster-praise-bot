@@ -1,5 +1,4 @@
 import neynarClient from "../helpers/neynarClient.js";
-import routes from "./routes.js";
 
 const bot = async (req: Request) => {
     if (!process.env.SIGNER_UUID) {
@@ -8,6 +7,11 @@ const bot = async (req: Request) => {
     const body = await req.text();
     const hookData = JSON.parse(body);
     const { channel, author, text, mentioned_profiles, hash } = hookData.data;
+    let praiseIndex = text.indexOf('praise');
+    if (praiseIndex === -1) {
+        // There's no 'praise' in the cast, skipping
+        return new Response('There\'s no \'praise\' in the cast', { status: 200 });
+    }
     const praiseHandle = process.env.PRAISE_FARCASTER_HANDLE;
     const praiseReceiver = mentioned_profiles.find((profile: any) => profile.username !== praiseHandle)
     if (!praiseReceiver) {
@@ -18,11 +22,13 @@ const bot = async (req: Request) => {
                 replyTo: hash,
             }
         );
+        console.log("Replied with error! Date: " + new Date());
+        return new Response(`Replied to the cast with error: no Farcaster account mentioned`);
     }
-    let index = text.indexOf('for');
+    let forIndex = text.indexOf('for');
     let reason
-    if (index !== -1) {
-        reason = text.substring(index);
+    if (forIndex !== -1) {
+        reason = text.substring(forIndex);
     } else {
         // There's no 'for' in the praise
         reason = text.split(praiseReceiver.username)[1]
@@ -46,7 +52,7 @@ const bot = async (req: Request) => {
             replyTo: hash,
         }
     );
-    console.log("Response sent! Date: " + new Date() + ' ' + reply);
+    console.log("Replied with frame! Date: " + new Date() + ' hash: ' + reply.hash);
     return new Response(`Replied to the cast with hash: ${reply.hash}`);
 }
 
