@@ -20,6 +20,7 @@ jobs:
             source ~/.nvm/nvm.sh
             cd farcaster-praise-bot
             git pull origin main
+            npm install -g bun
             pm2 stop all
             bun install
             pm2 start all
