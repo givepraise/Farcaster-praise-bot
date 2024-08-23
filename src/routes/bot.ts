@@ -7,9 +7,21 @@ const bot = async (req: Request) => {
     const body = await req.text();
     const hookData = JSON.parse(body);
     const { channel, author, text, mentioned_profiles, hash } = hookData.data;
-    let praiseIndex = text.indexOf('praise');
+    let praiseIndex = text.indexOf(' praise');
     if (praiseIndex === -1) {
-        // There's no 'praise' in the cast, skipping
+        // There's no 'praise' in the cast
+        await neynarClient.publishCast(
+            process.env.SIGNER_UUID,
+            `GM ${author.username}!
+            If you want to give praise to someone and mint an attestation, try casting in the following format:
+
+            @givepraise praise {recipient} for {reason}
+            `,
+            {
+                replyTo: hash,
+            }
+        );
+        console.log("Replied with error: no praise word in the cast!");
         return new Response('There\'s no \'praise\' in the cast', { status: 200 });
     }
     const praiseHandle = process.env.PRAISE_FARCASTER_HANDLE;
@@ -17,12 +29,12 @@ const bot = async (req: Request) => {
     if (!praiseReceiver) {
         await neynarClient.publishCast(
             process.env.SIGNER_UUID,
-            `gm ${author.username}! Please mention a Farcaster account to praise for`,
+            `GM ${author.username}! Please mention a Farcaster account to praise for`,
             {
                 replyTo: hash,
             }
         );
-        console.log("Replied with error! Date: " + new Date());
+        console.log("Replied with error: no Farcaster account mentioned!");
         return new Response(`Replied to the cast with error: no Farcaster account mentioned`);
     }
     let forIndex = text.indexOf('for');
