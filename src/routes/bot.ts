@@ -8,9 +8,6 @@ const bot = async (req: Request) => {
     const body = await req.text();
     const hookData = JSON.parse(body);
     const { channel, author, text, mentioned_profiles, hash } = hookData.data;
-    console.log('--------------------')
-    console.log('hookData: ', hookData.data)
-    console.log('--------------------')
     const praiseHandle = process.env.PRAISE_FARCASTER_HANDLE;
     const praiseReceiver = mentioned_profiles.find((profile: any) => profile.username !== praiseHandle)
     if (!praiseReceiver) {
@@ -37,10 +34,6 @@ const bot = async (req: Request) => {
         recipient: praiseReceiver.verified_addresses.eth_addresses[0] || praiseReceiver.custody_address
     };
 
-    console.log('--------------------')
-    console.log('query params: ', query)
-    console.log('--------------------')
-
     const reply = await neynarClient.publishCast(
         process.env.SIGNER_UUID,
         `gm ${author.username}`,
@@ -53,18 +46,6 @@ const bot = async (req: Request) => {
             replyTo: hash,
         }
     );
-
-    // const reply = await neynarClient.publishCast(
-    //     process.env.SIGNER_UUID,
-    //     `gm Ramin`,
-    //     {
-    //         embeds: [
-    //             {
-    //                 url: process.env.APP_URL + routes.frog,
-    //             },
-    //         ],
-    //     }
-    // );
     console.log("Response sent! Date: " + new Date() + ' ' + reply);
     return new Response(`Replied to the cast with hash: ${reply.hash}`);
 }
