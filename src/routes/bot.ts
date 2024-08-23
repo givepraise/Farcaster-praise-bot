@@ -13,9 +13,9 @@ const bot = async (req: Request) => {
         await neynarClient.publishCast(
             process.env.SIGNER_UUID,
             `GM ${author.username}!
-            If you want to give praise to someone and mint an attestation, try casting in the following format:
+If you want to give praise to someone and mint an attestation, try casting in the following format:
 
-            @givepraise praise {recipient} for {reason}
+"@givepraise praise {recipient} for {reason}"
             `,
             {
                 replyTo: hash,
@@ -29,7 +29,8 @@ const bot = async (req: Request) => {
     if (!praiseReceiver) {
         await neynarClient.publishCast(
             process.env.SIGNER_UUID,
-            `GM ${author.username}! Please mention a Farcaster account to praise for`,
+            `GM ${author.username}!
+            Please mention a Farcaster account to praise for`,
             {
                 replyTo: hash,
             }
