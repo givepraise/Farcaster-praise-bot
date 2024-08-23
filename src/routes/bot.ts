@@ -7,7 +7,7 @@ const bot = async (req: Request) => {
     }
     const body = await req.text();
     const hookData = JSON.parse(body);
-    const { channel, author, text, mentioned_profiles } = hookData;
+    const { channel, author, text, mentioned_profiles, hash } = hookData.data;
     console.log('--------------------')
     console.log('hookData: ', hookData.data)
     console.log('--------------------')
@@ -18,7 +18,7 @@ const bot = async (req: Request) => {
             process.env.SIGNER_UUID,
             `gm ${author.username}! Please mention a Farcaster account to praise for`,
             {
-                replyTo: hookData.data.hash,
+                replyTo: hash,
             }
         );
     }
@@ -50,7 +50,7 @@ const bot = async (req: Request) => {
                     url: process.env.APP_URL + '?' + new URLSearchParams(query),
                 },
             ],
-            replyTo: hookData.data.hash,
+            replyTo: hash,
         }
     );
 
