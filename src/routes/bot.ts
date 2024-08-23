@@ -8,13 +8,17 @@ const bot = async (req: Request) => {
     const body = await req.text();
     const hookData = JSON.parse(body);
 
+    console.log('--------------------')
+    console.log(hookData.data)
+    console.log('--------------------')
+
     const reply = await neynarClient.publishCast(
         process.env.SIGNER_UUID,
         `gm ${hookData.data.author.username}`,
         {
             embeds: [
                 {
-                    url: process.env.APP_URL + routes.frog,
+                    url: process.env.APP_URL!,
                 },
             ],
             replyTo: hookData.data.hash,

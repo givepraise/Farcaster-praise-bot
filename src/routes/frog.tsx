@@ -6,6 +6,7 @@ import routes from "./routes.js";
 export const frogApp = new Frog({
     // Supply a Hub to enable frame verification.
     // hub: neynar({ apiKey: 'NEYNAR_FROG_FM' }),
+    assetsPath: '/',
     basePath: routes.frog,
     title: 'Praise in Farcaster!',
 })
