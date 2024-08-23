@@ -8,6 +8,9 @@ const bot = async (req: Request) => {
     const body = await req.text();
     const hookData = JSON.parse(body);
     const { channel, author, text, mentioned_profiles } = hookData;
+    console.log('--------------------')
+    console.log('hookData: ', hookData.data)
+    console.log('--------------------')
     const praiseHandle = process.env.PRAISE_FARCASTER_HANDLE;
     const praiseReceiver = mentioned_profiles.find((profile: any) => profile.username !== praiseHandle)
     if (!praiseReceiver) {
@@ -35,9 +38,7 @@ const bot = async (req: Request) => {
     };
 
     console.log('--------------------')
-    console.log(hookData.data)
-    console.log('--------------------')
-    console.log(query)
+    console.log('query params: ', query)
     console.log('--------------------')
 
     const reply = await neynarClient.publishCast(
