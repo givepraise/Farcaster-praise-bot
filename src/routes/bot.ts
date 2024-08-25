@@ -72,7 +72,7 @@ Please cast in a channel to praise`,
 
     const reply = await neynarClient.publishCast(
         process.env.SIGNER_UUID,
-        `gm ${author.username}`,
+        'Gm! Thank you for using Praise and spreading gratitude and thankfulness!',
         {
             embeds: [
                 {
