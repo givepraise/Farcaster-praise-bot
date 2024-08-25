@@ -66,7 +66,8 @@ Please cast in a channel to praise`,
         reason,
         channel: channel.name,
         giver: author.username,
-        recipient: praiseReceiver.verified_addresses.eth_addresses[0] || praiseReceiver.custody_address
+        recipientAddress: praiseReceiver.verified_addresses.eth_addresses[0] || praiseReceiver.custody_address,
+        recipientName: praiseReceiver.username,
     };
 
     const reply = await neynarClient.publishCast(
