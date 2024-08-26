@@ -65,6 +65,7 @@ Please cast in a channel to praise`,
     const query = {
         reason,
         channel: channel.name,
+        giver: author.username,
         recipientAddress: praiseReceiver.verified_addresses.eth_addresses[0] || praiseReceiver.custody_address,
         recipientName: praiseReceiver.username,
     };
