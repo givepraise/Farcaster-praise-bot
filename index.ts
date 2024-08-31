@@ -1,6 +1,7 @@
 import routes from "./src/routes/routes.js";
 import bot from "./src/routes/bot.js";
 import {frogApp} from "./src/routes/frog.js";
+import replyAttestation from "./src/routes/replyAttestation.js";
 
 if (typeof Bun !== 'undefined') {
     const server = Bun.serve({
@@ -13,6 +14,8 @@ if (typeof Bun !== 'undefined') {
                         return new Response('This is my Farcaster praise bot', { status: 200 });
                     case routes.bot:
                         return await bot(req);
+                    case routes.replyAttestation:
+                        return await replyAttestation(req);
                     case routes.frog:
                         return await frogApp.fetch(req);
                     default:

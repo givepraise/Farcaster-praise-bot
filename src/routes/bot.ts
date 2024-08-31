@@ -29,6 +29,7 @@ If you want to give praise to someone and mint an attestation, try casting in th
         return new Response('There\'s no \'praise\' in the cast', { status: 200 });
     }
     const praiseHandle = process.env.PRAISE_FARCASTER_HANDLE;
+    // TODO: Should consider only first mention as praise receiver
     const praiseReceiver = mentioned_profiles.find((profile: any) => profile.username !== praiseHandle)
     if (!praiseReceiver) {
         await neynarClient.publishCast(
