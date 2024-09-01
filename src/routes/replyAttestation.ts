@@ -1,4 +1,6 @@
 import neynarClient from "../helpers/neynarClient.js";
+import {getProvider} from "../helpers/ethers.js";
+import {NETWORK_IDS} from "../helpers/constants.js";
 
 const baseAttestationScan = 'https://base.easscan.org/attestation/view/';
 
@@ -8,7 +10,10 @@ const replyAttestation = async (req: Request) => {
     }
     const body = await req.text();
     const data = JSON.parse(body);
-    const { attestationHash, praiseHash } = data;
+    const { txHash, praiseHash } = data;
+    const provider = getProvider(NETWORK_IDS.BASE_MAINNET);
+    const receipt = await provider.getTransactionReceipt(txHash);
+    const attestationHash = receipt?.logs[0]?.data
     if (!attestationHash || !praiseHash) {
         throw new Error("attestationHash and praiseHash are required");
     }
