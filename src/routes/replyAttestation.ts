@@ -28,7 +28,7 @@ ${baseAttestationScan + attestationHash}`,
             replyTo: praiseHash,
         }
     );
-    console.log("Replied with Attestation URL!");
+    console.log("Replied with Attestation URL! Date: " + new Date().toISOString());
     return new Response('Attestation URL sent!', { status: 200 });
 }
 
