@@ -3,7 +3,7 @@ import {getProvider} from "../helpers/ethers.js";
 import {NETWORK_IDS} from "../helpers/constants.js";
 import {JsonRpcProvider} from "ethers";
 
-const baseAttestationScan = 'https://base.easscan.org/attestation/view/';
+const baseAttestationScan = 'https://base-sepolia.easscan.org/attestation/view/';
 
 const wait = async (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -26,7 +26,7 @@ const replyAttestation = async (req: Request) => {
     console.log('txHash', txHash);
     console.log('praiseHash', praiseHash);
     console.log('-----------------');
-    const provider = getProvider(NETWORK_IDS.BASE_MAINNET);
+    const provider = getProvider(NETWORK_IDS.BASE_SEPOLIA);
     let attestationHash;
     let loopCount = 0;
     while (!attestationHash || loopCount < 10) {
