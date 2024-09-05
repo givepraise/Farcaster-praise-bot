@@ -11,22 +11,22 @@ const bot = async (req: Request) => {
         // The bot should not reply to itself
         return new Response('The bot should not reply to itself', { status: 200 });
     }
-    let praiseIndex = text.indexOf(' praise');
+    let praiseIndex = text.indexOf('@givepraise to @');
     if (praiseIndex === -1) {
-        // There's no 'praise' in the cast
+        // There's no '@givepraise to @' in the cast
         await neynarClient.publishCast(
             process.env.SIGNER_UUID,
             `GM ${author.username}!
 If you want to give praise to someone and mint an attestation, try casting in the following format:
 
-@givepraise praise {recipient} for {reason}
+@givepraise to {recipient} for {reason}
             `,
             {
                 replyTo: hash,
             }
         );
-        console.log("Replied with error: no praise word in the cast!");
-        return new Response('There\'s no \'praise\' in the cast', { status: 200 });
+        console.log("Replied with error: no '@givepraise to @' in the cast!");
+        return new Response('There\'s no \'@givepraise to @\' in the cast', { status: 200 });
     }
     const praiseHandle = process.env.PRAISE_FARCASTER_HANDLE;
     // TODO: Should consider only first mention as praise receiver
