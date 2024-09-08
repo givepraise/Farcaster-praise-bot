@@ -77,7 +77,7 @@ Please cast in a channel to praise`,
 
     const reply = await neynarClient.publishCast(
         process.env.SIGNER_UUID,
-        'Woo! You just minted a Praise attestation to your friends account 🎉 Thanks for helping to foster a culture of on-chain gratitude! Time to mint an attestation!',
+        'Woo! Let\'s mint Praise attestation to your friends account 🎉 Thanks for helping to foster a culture of on-chain gratitude!',
         {
             embeds: [
                 {
