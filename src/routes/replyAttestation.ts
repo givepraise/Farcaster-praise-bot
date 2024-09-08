@@ -40,7 +40,7 @@ const replyAttestation = async (req: Request) => {
     }
     await neynarClient.publishCast(
         process.env.SIGNER_UUID,
-        `Thanks for using Praise and spreading gratitude and thankfulness!
+        `Thanks for using Praise and building your recipient’s on-chain reputation by sharing gratitude about their actions!
         
 This is the attestation URL you just minted:
 

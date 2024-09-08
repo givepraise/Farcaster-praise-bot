@@ -17,9 +17,12 @@ const bot = async (req: Request) => {
         await neynarClient.publishCast(
             process.env.SIGNER_UUID,
             `GM ${author.username}!
-If you want to give praise to someone and mint an attestation, try casting in the following format:
 
-@givepraise to {recipient} for {reason}
+Spread the love by minting a Praise attestation to your friend’s account. Just comment below in the following format:
+
+@givepraise to @YourFriendsHandle for ___
+
+Add your reason for giving praise at the end of the comment and double check that your friend’s Farcaster handle is correct before publishing!
             `,
             {
                 replyTo: hash,
@@ -74,7 +77,7 @@ Please cast in a channel to praise`,
 
     const reply = await neynarClient.publishCast(
         process.env.SIGNER_UUID,
-        'Gm! Thank you for using Praise and spreading gratitude and thankfulness!',
+        'Woo! You just minted a Praise attestation to your friends account 🎉 Thanks for helping to foster a culture of on-chain gratitude! Time to mint an attestation!',
         {
             embeds: [
                 {
