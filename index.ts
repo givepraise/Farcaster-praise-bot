@@ -8,7 +8,6 @@ if (typeof Bun !== 'undefined') {
         fetch: async (req) => {
             try {
                 const url = new URL(req.url);
-                console.log("Received request! Date: " + new Date());
                 switch (url.pathname) {
                     case routes.home:
                         return new Response('This is my Farcaster praise bot', { status: 200 });

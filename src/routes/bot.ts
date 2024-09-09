@@ -7,6 +7,7 @@ const bot = async (req: Request) => {
     const body = await req.text();
     const hookData = JSON.parse(body);
     const { channel, author, text, mentioned_profiles, hash } = hookData.data;
+    console.log("/bot received new request! Date: " + new Date() + ' hash: ' + hash + ' author: ' + author.username + ' text: ' + text + ' channel: ' + channel.name + ' mentioned_profiles: ' + mentioned_profiles);
     if (author.username === process.env.PRAISE_FARCASTER_HANDLE) {
         // The bot should not reply to itself
         return new Response('The bot should not reply to itself', { status: 200 });
