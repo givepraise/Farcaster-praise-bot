@@ -10,6 +10,7 @@ const bot = async (req: Request) => {
     console.log("/bot received new request! Date: " + new Date() + ' hash: ' + hash + ' author: ' + author.username + ' text: ' + text + ' channel: ' + channel.name + ' mentioned_profiles: ' + mentioned_profiles);
     if (author.username === process.env.PRAISE_FARCASTER_HANDLE) {
         // The bot should not reply to itself
+        console.log("The bot should not reply to itself! Date: " + new Date());
         return new Response('The bot should not reply to itself', { status: 200 });
     }
     let praiseIndex = text.indexOf('@givepraise to @');
@@ -59,14 +60,7 @@ Please cast in a channel to praise`,
         console.log("Replied with error: no channel mentioned!");
         return new Response(`Replied to the cast with error: no channel mentioned`);
     }
-    let forIndex = text.indexOf('for');
-    let reason
-    if (forIndex !== -1) {
-        reason = text.substring(forIndex);
-    } else {
-        // There's no 'for' in the praise
-        reason = text.split(praiseReceiver.username)[1]
-    }
+    const reason = text.split(praiseReceiver.username)[1]
     const query = {
         reason,
         channel: channel.name,
