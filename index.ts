@@ -21,6 +21,7 @@ if (typeof Bun !== 'undefined') {
                         return new Response('Not Found', { status: 404 });
                 }
             } catch (e: any) {
+                console.log("Bun fetch error! Date " + new Date() + " error: " + e);
                 return new Response(e.message, { status: 500 });
             }
         },

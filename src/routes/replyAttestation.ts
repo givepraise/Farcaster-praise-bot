@@ -26,7 +26,7 @@ const replyAttestation = async (req: Request) => {
     console.log('txHash', txHash);
     console.log('praiseHash', praiseHash);
     console.log('-----------------');
-    const provider = getProvider(NETWORK_IDS.BASE_SEPOLIA);
+    const provider = getProvider(NETWORK_IDS.BASE_MAINNET);
     let attestationHash;
     let loopCount = 0;
     while (!attestationHash || loopCount < 10) {
