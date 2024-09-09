@@ -69,19 +69,24 @@ Please cast in a channel to praise`,
         recipientName: praiseReceiver.username,
         praiseHash: hash,
     };
-
-    const reply = await neynarClient.publishCast(
-        process.env.SIGNER_UUID,
-        'Woo! Let\'s mint Praise attestation to your friends account 🎉 Thanks for helping to foster a culture of on-chain gratitude!',
-        {
-            embeds: [
-                {
-                    url: process.env.APP_URL + '?' + new URLSearchParams(query),
-                },
-            ],
-            replyTo: hash,
-        }
-    );
+    let reply;
+    try {
+        reply = await neynarClient.publishCast(
+            process.env.SIGNER_UUID,
+            'Woo! Let\'s mint Praise attestation to your friends account 🎉 Thanks for helping to foster a culture of on-chain gratitude!',
+            {
+                embeds: [
+                    {
+                        url: process.env.APP_URL + '?' + new URLSearchParams(query),
+                    },
+                ],
+                replyTo: hash,
+            }
+        );
+    } catch (e){
+        console.log("send frame error: " + e);
+        return new Response('Error: ' + e);
+    }
     console.log("Replied with frame! Date: " + new Date() + ' hash: ' + reply.hash);
     return new Response(`Replied to the cast with hash: ${reply.hash}`);
 }
