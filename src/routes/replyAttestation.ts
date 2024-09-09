@@ -3,7 +3,7 @@ import {getProvider} from "../helpers/ethers.js";
 import {NETWORK_IDS} from "../helpers/constants.js";
 import {JsonRpcProvider} from "ethers";
 
-const baseAttestationScan = 'https://base-sepolia.easscan.org/attestation/view/';
+const baseAttestationScan = 'https://base.easscan.org/attestation/view/';
 
 const wait = async (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
