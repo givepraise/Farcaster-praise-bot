@@ -84,7 +84,7 @@ Please cast in a channel to praise`,
             }
         );
     } catch (e){
-        console.log("send frame error: " + e);
+        console.log("send frame error! Date " + new Date() + " error: " + e);
         return new Response('Error: ' + e);
     }
     console.log("Replied with frame! Date: " + new Date() + ' hash: ' + reply.hash);
