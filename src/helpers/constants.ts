@@ -52,3 +52,8 @@ export const NETWORK_NAMES = {
 
     STELLAR_MAINNET: 'Stellar Mainnet',
 };
+
+export const baseAttestationScan = {
+    8453: 'https://base.easscan.org/attestation/view/',
+    84532: 'https://base-sepolia.easscan.org/attestation/view/',
+}
