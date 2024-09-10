@@ -62,11 +62,11 @@ Please cast in a channel to praise`,
     }
     const reason = text.split(praiseReceiver.username)[1]
     const query = {
-        reason,
-        channel: channel.name,
-        giver: author.username,
-        recipientAddress: praiseReceiver.verified_addresses.eth_addresses[0] || praiseReceiver.custody_address,
-        recipientName: praiseReceiver.username,
+        // reason,
+        // channel: channel.name,
+        // giver: author.username,
+        // recipientAddress: praiseReceiver.verified_addresses.eth_addresses[0] || praiseReceiver.custody_address,
+        // recipientName: praiseReceiver.username,
         praiseHash: hash,
     };
     let reply;
