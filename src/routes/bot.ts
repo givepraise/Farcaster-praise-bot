@@ -35,7 +35,8 @@ Add your reason for giving praise at the end of the comment and double check tha
     }
     const praiseHandle = process.env.PRAISE_FARCASTER_HANDLE;
     // TODO: Should consider only first mention as praise receiver
-    const praiseReceiver = mentioned_profiles.find((profile: any) => profile.username !== praiseHandle)
+    const isPraiseHandleReceiver = text.startsWith(`@${praiseHandle} to @${praiseHandle}`);
+    const praiseReceiver = isPraiseHandleReceiver ? praiseHandle : mentioned_profiles.find((profile: any) => profile.username !== praiseHandle)
     if (!praiseReceiver) {
         await neynarClient.publishCast(
             process.env.SIGNER_UUID,
