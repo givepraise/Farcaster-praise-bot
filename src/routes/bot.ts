@@ -48,25 +48,7 @@ Please mention a Farcaster account to praise for`,
         console.log("Replied with error: no Farcaster account mentioned!");
         return new Response(`Replied to the cast with error: no Farcaster account mentioned`);
     }
-    if (!channel?.name) {
-        await neynarClient.publishCast(
-            process.env.SIGNER_UUID,
-            `GM ${author.username}!
-Please cast in a channel to praise`,
-            {
-                replyTo: hash,
-            }
-        );
-        console.log("Replied with error: no channel mentioned!");
-        return new Response(`Replied to the cast with error: no channel mentioned`);
-    }
-    const reason = text.split(praiseReceiver.username)[1]
     const query = {
-        // reason,
-        // channel: channel.name,
-        // giver: author.username,
-        // recipientAddress: praiseReceiver.verified_addresses.eth_addresses[0] || praiseReceiver.custody_address,
-        // recipientName: praiseReceiver.username,
         praiseHash: hash,
     };
     let reply;
